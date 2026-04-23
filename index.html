@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SeenLogic — Managed IT Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  /* ── LIGHT GREY + NAVY + BURNT ORANGE ── */
+  --bg:        #f2f4f7;
+  --bg2:       #e8ebf0;
+  --white:     #dde1e8;
+  --card:      #dde1e8;
+  --panel:     #d4d8e0;
+
+  --navy:      #0f2044;
+  --navy2:     #162b5a;
+  --navy3:     #1e3a70;
+
+  --orange:    #c85a1e;
+  --orange2:   #e06620;
+  --orange3:   #f07840;
+  --orange-dim:rgba(200,90,30,.1);
+  --orange-glow:rgba(200,90,30,.22);
+
+  --border:    #d4d9e2;
+  --border2:   #bdc5d2;
+  --text:      #1a2540;
+  --mid:       #4a5a72;
+  --muted:     #7a8da8;
+
+  --green:     #0a9960;
+  --r:  6px;
+  --r2: 12px;
+  --shadow:  0 2px 16px rgba(15,32,68,.07);
+  --shadow2: 0 8px 48px rgba(15,32,68,.13);
+}
+
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+/* ── HEADER ── */
+header{
+  background:rgba(220,224,230,.98);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 60px;
+  position:sticky;top:0;z-index:200;
+  box-shadow:var(--shadow);
+}
+.hrow{display:flex;align-items:center;justify-content:space-between;height:76px;}
+
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;}
+.logo-mark{
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  background:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(15,32,68,.3);
+  position:relative;overflow:hidden;
+}
+.logo-mark::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:4px;
+  background:var(--orange);
+}
+.logo-mark svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.logo-text{display:flex;flex-direction:column;line-height:1;}
+.logo-name{font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.5px;}
+.logo-name span{color:var(--orange);}
+.logo-tag{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px;}
+
+nav{display:flex;align-items:center;gap:2px;}
+.nb{
+  background:none;border:none;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:14px;font-weight:600;color:var(--mid);
+  padding:8px 16px;border-radius:var(--r);cursor:pointer;transition:all .18s;
+}
+.nb:hover{color:var(--navy);background:var(--bg);}
+.nb.active{color:var(--orange);background:var(--orange-dim);}
+
+.hcta{
+  background:var(--orange);color:#fff;border:none;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;
+  padding:10px 24px;border-radius:var(--r);cursor:pointer;
+  margin-left:16px;transition:all .2s;
+  box-shadow:0 4px 16px var(--orange-glow);
+}
+.hcta:hover{background:var(--orange2);transform:translateY(-1px);box-shadow:0 6px 22px var(--orange-glow);}
+
+/* ── PAGE MGR ── */
+.pgmgr{
+  background:var(--navy);border-bottom:3px solid var(--orange);
+  padding:0 60px;height:44px;
+  display:flex;align-items:center;gap:12px;font-size:12.5px;color:rgba(255,255,255,.5);
+}
+.pgmgr input{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
+  color:#fff;padding:5px 13px;border-radius:var(--r);
+  font-size:12.5px;font-family:'Plus Jakarta Sans',sans-serif;width:165px;
+  transition:border-color .2s;
+}
+.pgmgr input:focus{outline:none;border-color:var(--orange);}
+.pgmgr input::placeholder{color:rgba(255,255,255,.3);}
+.pill{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.75);padding:4px 14px;border-radius:20px;
+  font-size:12px;font-weight:600;cursor:pointer;transition:all .18s;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+.pill:hover{border-color:var(--orange);color:var(--orange3);}
+.pill.rm{border-color:rgba(220,60,60,.4);color:#ff9090;}
+.pill.rm:hover{background:rgba(220,60,60,.15);border-color:#e03030;}
+.etip{margin-left:auto;font-size:12px;color:rgba(255,255,255,.4);}
+.etip b{color:var(--orange3);}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--orange);color:#fff;border:none;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;
+  padding:13px 28px;border-radius:var(--r);cursor:pointer;
+  transition:all .2s;box-shadow:0 4px 16px var(--orange-glow);
+}
+.btn:hover{background:var(--orange2);transform:translateY(-2px);box-shadow:0 8px 28px var(--orange-glow);}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--navy);
+  border:1.5px solid var(--border2);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;
+  padding:12px 24px;border-radius:var(--r);cursor:pointer;transition:all .2s;
+}
+.btn-ghost:hover{border-color:var(--orange);color:var(--orange);}
+.btn-navy{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--navy);color:#fff;border:none;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;
+  padding:13px 28px;border-radius:var(--r);cursor:pointer;transition:all .2s;
+}
+.btn-navy:hover{background:var(--navy2);transform:translateY(-1px);}
+
+/* ── PAGES ── */
+.page{display:none;}
+.page.active{display:block;animation:appear .32s cubic-bezier(.22,1,.36,1);}
+@keyframes appear{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── HERO ── */
+.hero{
+  padding:100px 60px 0;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+  min-height:88vh;border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+  background:var(--white);
+}
+/* right panel bg */
+.hero::after{
+  content:'';position:absolute;right:0;top:0;bottom:0;width:50%;
+  background:linear-gradient(160deg,var(--bg) 0%,var(--bg2) 100%);
+  z-index:0;border-left:1px solid var(--border);
+}
+/* subtle corner accent */
+.hero::before{
+  content:'';position:absolute;top:0;left:0;width:6px;height:100%;
+  background:linear-gradient(180deg,var(--orange),var(--navy));
+  z-index:2;
+}
+.hero-left{position:relative;z-index:1;padding-bottom:90px;padding-left:16px;}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--orange-dim);border:1px solid rgba(200,90,30,.25);
+  color:var(--orange);border-radius:4px;padding:5px 14px;
+  font-size:11.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:28px;
+}
+.hero h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(40px,5.5vw,68px);font-weight:700;
+  line-height:1.07;letter-spacing:-1.5px;color:var(--navy);margin-bottom:24px;
+}
+.hero h1 em{font-style:normal;color:var(--orange);}
+.hero-sub{
+  font-size:17px;color:var(--mid);line-height:1.78;
+  max-width:480px;margin-bottom:16px;font-weight:400;
+}
+.hero-partner{
+  font-size:16px;color:var(--navy);font-weight:600;
+  margin-bottom:40px;letter-spacing:-.1px;
+}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+
+/* hero right stat cards */
+.hero-right{
+  position:relative;z-index:1;padding-bottom:90px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.hsc{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r2);padding:22px 26px;
+  box-shadow:var(--shadow);display:flex;align-items:center;gap:20px;
+  transition:all .2s;
+}
+.hsc:hover{border-color:var(--orange);transform:translateX(4px);}
+.hsc-icon{
+  width:48px;height:48px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+  background:var(--orange-dim);border:1px solid rgba(200,90,30,.2);
+}
+.hsc-num{font-size:28px;font-weight:800;color:var(--navy);letter-spacing:-1px;line-height:1;}
+.hsc-num span{font-size:15px;color:var(--orange);font-weight:700;}
+.hsc-label{font-size:12.5px;color:var(--muted);margin-top:3px;}
+
+/* DMV badge */
+.dmv-badge{
+  background:var(--navy);color:rgba(255,255,255,.8);
+  border-radius:var(--r2);padding:18px 22px;
+  display:flex;align-items:center;gap:14px;
+  border:1px solid var(--navy2);
+}
+.dmv-badge .icon{font-size:24px;flex-shrink:0;}
+.dmv-badge p{font-size:13px;line-height:1.5;color:rgba(255,255,255,.75);}
+.dmv-badge strong{color:#fff;font-weight:700;}
+
+/* ── MARQUEE ── */
+.marquee{
+  background:var(--navy);padding:15px 0;overflow:hidden;
+  position:relative;
+}
+.marquee::before,.marquee::after{
+  content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;
+}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--navy),transparent);}
+.marquee::after{right:0;background:linear-gradient(270deg,var(--navy),transparent);}
+.mtrack{display:flex;width:max-content;animation:run 34s linear infinite;}
+.mtrack:hover{animation-play-state:paused;}
+.mi{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:0 28px;font-size:12.5px;font-weight:600;
+  color:rgba(255,255,255,.5);white-space:nowrap;letter-spacing:.8px;text-transform:uppercase;
+}
+.mi-sep{color:var(--orange3);font-size:10px;}
+@keyframes run{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ── SECTIONS ── */
+.sec{padding:96px 60px;background:var(--white);}
+.sec-alt{background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.sec-label{
+  font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--orange);margin-bottom:12px;display:flex;align-items:center;gap:8px;
+}
+.sec-label::before{content:'';width:16px;height:2px;background:var(--orange);border-radius:2px;}
+.sec-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(28px,3.5vw,44px);font-weight:700;
+  letter-spacing:-1px;line-height:1.1;color:var(--navy);margin-bottom:14px;
+}
+.sec-title em{font-style:normal;color:var(--orange);}
+.sec-sub{font-size:16px;color:var(--mid);line-height:1.75;max-width:520px;}
+
+/* ── SERVICE CARDS ── */
+.svc-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:18px;margin-top:52px;
+}
+@media(max-width:860px){.svc-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.svc-grid{grid-template-columns:1fr;}}
+.scard{
+  background:#c8cdd7;border:1px solid var(--border2);
+  border-radius:var(--r2);padding:32px 28px;
+  transition:all .22s;cursor:default;
+  position:relative;overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.scard::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--orange),var(--orange3));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s cubic-bezier(.22,1,.36,1);
+}
+.scard:hover{border-color:var(--orange);transform:translateY(-4px);box-shadow:var(--shadow2);}
+.scard:hover::after{transform:scaleX(1);}
+.scard-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--border2);text-transform:uppercase;margin-bottom:16px;}
+.scard-ico{font-size:28px;margin-bottom:16px;}
+.scard h3{font-size:17px;font-weight:700;margin-bottom:10px;color:var(--navy);letter-spacing:-.2px;}
+.scard p{font-size:13.5px;color:var(--mid);line-height:1.7;}
+
+/* AI highlight card */
+.scard.highlight{
+  background:var(--navy);border-color:var(--navy);
+}
+.scard.highlight h3{color:#fff;}
+.scard.highlight p{color:rgba(255,255,255,.65);}
+.scard.highlight .scard-num{color:rgba(255,255,255,.25);}
+.scard.highlight::after{background:linear-gradient(90deg,var(--orange),var(--orange3));}
+
+/* ── FEATURES TWO-COL ── */
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
+@media(max-width:820px){.features-grid{grid-template-columns:1fr;}}
+
+.flist{list-style:none;margin-top:28px;}
+.flist li{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:14px 0;border-bottom:1px solid var(--border);
+  font-size:15px;color:var(--mid);font-weight:400;
+}
+.flist li:first-child{border-top:1px solid var(--border);}
+.fck{
+  width:22px;height:22px;flex-shrink:0;border-radius:50%;
+  background:var(--orange-dim);border:1px solid rgba(200,90,30,.3);
+  display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+.fck svg{width:11px;height:11px;stroke:var(--orange);stroke-width:3;fill:none;}
+
+/* right panel (dark) */
+.dark-panel{
+  background:var(--navy);border-radius:var(--r2);overflow:hidden;
+  box-shadow:var(--shadow2);border:1px solid var(--navy2);
+}
+.dp-top{
+  padding:32px;border-bottom:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);
+  position:relative;overflow:hidden;
+}
+.dp-top::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,90,30,.15),transparent 70%);
+}
+.dp-top h3{
+  font-family:'Fraunces',serif;font-size:22px;font-weight:700;
+  color:#fff;letter-spacing:-.5px;margin-bottom:6px;
+}
+.dp-top p{font-size:14px;color:rgba(255,255,255,.5);line-height:1.6;}
+.dp-body{padding:28px 32px;}
+.dp-body .flist li{border-color:rgba(255,255,255,.08);}
+.dp-body .flist li:first-child{border-top-color:rgba(255,255,255,.08);}
+.dp-body .flist li{color:rgba(255,255,255,.65);}
+.dp-body .fck{background:rgba(200,90,30,.15);border-color:rgba(200,90,30,.3);}
+.dp-body .fck svg{stroke:var(--orange3);}
+
+/* ── PROCESS ── */
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-top:56px;}
+@media(max-width:780px){.proc-grid{grid-template-columns:1fr 1fr;}}
+.proc-step{position:relative;}
+.proc-step::after{
+  content:'';position:absolute;top:21px;left:calc(100% - 20px);
+  width:calc(100% - 20px);height:1px;
+  background:linear-gradient(90deg,var(--border2),transparent);
+}
+.proc-step:last-child::after{display:none;}
+@media(max-width:780px){.proc-step::after{display:none;}}
+.proc-num{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--orange-dim);border:2px solid rgba(200,90,30,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:800;color:var(--orange);
+  margin-bottom:18px;transition:all .2s;letter-spacing:.5px;
+}
+.proc-step:hover .proc-num{background:var(--orange);border-color:var(--orange);color:#fff;}
+.proc-step h4{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;letter-spacing:-.2px;}
+.proc-step p{font-size:13.5px;color:var(--mid);line-height:1.65;}
+
+/* ── CTA BAND ── */
+.cta-band{
+  background:var(--navy);
+  padding:80px 60px;
+  display:flex;align-items:center;justify-content:space-between;gap:40px;
+  flex-wrap:wrap;position:relative;overflow:hidden;
+}
+.cta-band::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--orange),var(--orange3),var(--orange));
+}
+.cta-band::after{
+  content:'';position:absolute;right:-80px;bottom:-80px;
+  width:320px;height:320px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.04);pointer-events:none;
+}
+.cta-copy h2{
+  font-family:'Fraunces',serif;
+  font-size:clamp(24px,3vw,38px);font-weight:700;
+  letter-spacing:-1px;color:#fff;margin-bottom:10px;
+}
+.cta-copy p{font-size:15px;color:rgba(255,255,255,.5);}
+.cta-btns{display:flex;gap:12px;flex-wrap:wrap;flex-shrink:0;}
+
+/* ── PAGE INTRO ── */
+.page-intro{
+  padding:80px 60px 72px;
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.page-intro::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:4px;
+  background:linear-gradient(90deg,var(--orange),var(--navy));
+}
+.page-intro::after{
+  content:'';position:absolute;right:-60px;top:-60px;
+  width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,var(--orange-dim),transparent 70%);pointer-events:none;
+}
+.page-intro h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(36px,5vw,58px);font-weight:700;
+  letter-spacing:-1.2px;line-height:1.05;color:var(--navy);margin:14px 0 16px;
+  position:relative;z-index:1;
+}
+.page-intro h1 em{font-style:normal;color:var(--orange);}
+.page-intro .lead{font-size:17px;color:var(--mid);max-width:560px;line-height:1.75;position:relative;z-index:1;}
+
+/* ── INNER ── */
+.inner{padding:72px 60px;}
+.cblock{margin-bottom:72px;}
+.cblock:last-child{margin-bottom:0;}
+
+/* ── SECURITY PANEL ── */
+.sec-panel{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--r2);padding:48px;margin-bottom:72px;
+  position:relative;overflow:hidden;
+}
+.sec-panel::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--orange),var(--orange3));
+}
+
+/* ── CONTACT ── */
+.contact-wrap{display:grid;grid-template-columns:1fr 420px;gap:80px;}
+@media(max-width:900px){.contact-wrap{grid-template-columns:1fr;gap:48px;}}
+.ci-head h2{
+  font-family:'Fraunces',serif;font-size:30px;font-weight:700;
+  letter-spacing:-.7px;margin-bottom:14px;color:var(--navy);
+}
+.ci-head p{font-size:15px;color:var(--mid);line-height:1.75;margin-bottom:36px;}
+.ci-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px;}
+.ci-ic{
+  width:42px;height:42px;border-radius:9px;flex-shrink:0;
+  background:var(--orange-dim);border:1px solid rgba(200,90,30,.25);
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.ci-lb{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:700;margin-bottom:3px;}
+.ci-v{font-size:14px;color:var(--text);font-weight:600;line-height:1.5;}
+
+.fcard{
+  background:#dde1e8;border:1px solid var(--border);
+  border-radius:var(--r2);padding:36px;
+  box-shadow:var(--shadow2);position:relative;overflow:hidden;
+}
+.fcard::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--orange),var(--orange3));
+}
+.fg{margin-bottom:18px;}
+.fg label{display:block;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:7px;}
+.fg input,.fg textarea,.fg select{
+  width:100%;background:var(--bg);border:1.5px solid var(--border);
+  color:var(--text);padding:11px 14px;border-radius:var(--r);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:500;
+  transition:border-color .18s,background .18s;-webkit-appearance:none;
+}
+.fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--orange);background:var(--white);}
+.fg textarea{min-height:110px;resize:vertical;}
+.fok{
+  background:rgba(10,153,96,.08);border:1px solid rgba(10,153,96,.3);
+  color:var(--green);padding:13px 16px;border-radius:var(--r);
+  font-size:14px;font-weight:600;display:none;margin-bottom:16px;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--navy);padding:50px 60px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:24px;border-top:4px solid var(--orange);
+}
+.fl-brand{}
+.fl-name{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.4px;}
+.fl-name span{color:var(--orange3);}
+.fl-tag{font-size:11px;color:rgba(255,255,255,.35);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px;}
+.fl-note{font-size:12px;color:rgba(255,255,255,.3);margin-top:8px;}
+.fl-mid{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.fl-dmv{font-size:12px;color:rgba(255,255,255,.4);text-align:center;}
+.fl-nav{display:flex;gap:24px;}
+.fl-nav a{font-size:13px;color:rgba(255,255,255,.45);text-decoration:none;transition:color .18s;font-weight:500;}
+.fl-nav a:hover{color:var(--orange3);}
+
+/* ── MODAL ── */
+.mbg{display:none;position:fixed;inset:0;background:rgba(15,32,68,.7);z-index:400;align-items:center;justify-content:center;backdrop-filter:blur(8px);}
+.mbg.open{display:flex;animation:fin .18s;}
+@keyframes fin{from{opacity:0;}to{opacity:1;}}
+.mbox{
+  background:#dde1e8;border:1px solid var(--border);
+  border-radius:14px;padding:44px;width:92%;max-width:460px;
+  position:relative;box-shadow:0 40px 100px rgba(15,32,68,.25);
+  animation:appear .28s cubic-bezier(.22,1,.36,1);
+}
+.mbox::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--orange),var(--orange3));
+  border-radius:14px 14px 0 0;
+}
+.mbox h2{
+  font-family:'Fraunces',serif;font-size:26px;font-weight:700;
+  letter-spacing:-.6px;color:var(--navy);margin-bottom:6px;
+}
+.mbox>.msub{font-size:14px;color:var(--muted);margin-bottom:28px;}
+.mcl{position:absolute;top:18px;right:18px;background:none;border:none;font-size:20px;color:var(--muted);cursor:pointer;transition:color .18s;}
+.mcl:hover{color:var(--navy);}
+
+/* ── EDITABLE ── */
+[contenteditable="true"]{outline:2px solid transparent;border-radius:3px;transition:outline .15s,background .15s;}
+[contenteditable="true"]:hover{background:rgba(200,90,30,.06);outline:2px solid rgba(200,90,30,.2);}
+[contenteditable="true"]:focus{background:rgba(200,90,30,.09);outline:2px solid var(--orange);}
+
+/* ── HINT ── */
+.hint{position:fixed;bottom:20px;right:20px;z-index:90;background:var(--navy);color:rgba(255,255,255,.6);border-radius:8px;padding:10px 18px;font-size:12px;box-shadow:var(--shadow2);}
+.hint b{color:var(--orange3);}
+
+/* ── SOFTWARE RIBBON ── */
+.soft-ribbon{
+  background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:14px 60px;display:flex;align-items:center;justify-content:center;gap:12px;
+  font-size:13px;color:var(--muted);text-align:center;
+}
+.soft-ribbon strong{color:var(--navy);font-weight:700;}
+.soft-dot{width:6px;height:6px;border-radius:50%;background:var(--orange);flex-shrink:0;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  header,.hrow,.hero,.sec,.page-intro,.inner,.pgmgr,.cta-band,footer,.soft-ribbon{padding-left:20px;padding-right:20px;}
+  .hero{grid-template-columns:1fr;min-height:auto;padding-top:60px;}
+  .hero::after{display:none;}
+  .hero-right{display:none;}
+  .svc-grid{grid-template-columns:1fr;}
+  .proc-grid{grid-template-columns:1fr 1fr;}
+  .features-grid{grid-template-columns:1fr;}
+  .contact-wrap{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="hrow">
+    <div class="logo" onclick="go('home')">
+      <div class="logo-text">
+        <div class="logo-name"><span>Seen</span>Logic</div>
+        <div class="logo-tag">Managed IT Services</div>
+      </div>
+    </div>
+    <nav id="main-nav">
+      <button class="nb active" onclick="go('home',this)">Home</button>
+      <button class="nb" onclick="go('services',this)">Services</button>
+      <button class="nb" onclick="go('about',this)">About</button>
+      <button class="nb" onclick="go('contact',this)">Contact</button>
+    </nav>
+    <button class="hcta" onclick="openModal()">Contact Us</button>
+  </div>
+</header>
+
+<!-- PAGE MANAGER -->
+<div class="pgmgr">
+  <span style="font-weight:700;color:rgba(255,255,255,.7);">Add Page:</span>
+  <input type="text" id="pg-input" placeholder="e.g. Pricing, Blog…"/>
+  <button class="pill" onclick="addPage()">+ Create</button>
+  <div class="etip">✏ <b>Click any text</b> to edit it directly</div>
+</div>
+
+
+<!-- ════════════════ HOME ════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow" contenteditable="true">DC · Maryland · Virginia</div>
+      <h1><span contenteditable="true">Managed IT<br>that moves your<br>business <em>forward.</em></span></h1>
+      <p class="hero-sub" contenteditable="true">SeenLogic delivers reliable, proactive IT services. We take complete ownership of your IT infrastructure, monitoring, supporting, and optimizing it so your business runs smarter and more efficiently.</p>
+      <p class="hero-partner" contenteditable="true">We are your partner for growth and efficiency.</p>
+      <div class="hero-btns">
+        <button class="btn" onclick="go('services',document.querySelectorAll('.nb')[1])">
+          Our Services
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <button class="btn-ghost" onclick="openModal()">Contact Us</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hsc">
+        <div class="hsc-icon">🖥</div>
+        <div><div class="hsc-num" contenteditable="true">500<span>+</span></div><div class="hsc-label" contenteditable="true">Businesses Supported</div></div>
+      </div>
+      <div class="hsc">
+        <div class="hsc-icon">📈</div>
+        <div><div class="hsc-num" contenteditable="true">99.9<span>%</span></div><div class="hsc-label" contenteditable="true">Uptime Guarantee</div></div>
+      </div>
+      <div class="hsc">
+        <div class="hsc-icon">⚡</div>
+        <div><div class="hsc-num" contenteditable="true">&lt;2<span>hr</span></div><div class="hsc-label" contenteditable="true">Average Response Time</div></div>
+      </div>
+      <div class="dmv-badge">
+        <span class="icon">📍</span>
+        <p><strong>Serving the DMV Region</strong><br>Washington DC · Maryland · Virginia</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="mtrack">
+      <span class="mi">Managed IT Services <span class="mi-sep">◆</span></span>
+      <span class="mi">Cybersecurity & Compliance <span class="mi-sep">◆</span></span>
+      <span class="mi">Cloud Migration & Management <span class="mi-sep">◆</span></span>
+      <span class="mi">AI Integration for Business <span class="mi-sep">◆</span></span>
+      <span class="mi">Help Desk Support <span class="mi-sep">◆</span></span>
+      <span class="mi">IT Strategy & Consulting <span class="mi-sep">◆</span></span>
+      <span class="mi">Backup & Disaster Recovery <span class="mi-sep">◆</span></span>
+      <span class="mi">Microsoft 365 & Azure <span class="mi-sep">◆</span></span>
+      <!-- duplicate for seamless loop -->
+      <span class="mi">Managed IT Services <span class="mi-sep">◆</span></span>
+      <span class="mi">Cybersecurity & Compliance <span class="mi-sep">◆</span></span>
+      <span class="mi">Cloud Migration & Management <span class="mi-sep">◆</span></span>
+      <span class="mi">AI Integration for Business <span class="mi-sep">◆</span></span>
+      <span class="mi">Help Desk Support <span class="mi-sep">◆</span></span>
+      <span class="mi">IT Strategy & Consulting <span class="mi-sep">◆</span></span>
+      <span class="mi">Backup & Disaster Recovery <span class="mi-sep">◆</span></span>
+      <span class="mi">Microsoft 365 & Azure <span class="mi-sep">◆</span></span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="sec">
+    <div class="sec-label" contenteditable="true">What We Do</div>
+    <div class="sec-title" contenteditable="true">Everything your business needs<br>to <em>stay ahead.</em></div>
+    <p class="sec-sub" contenteditable="true">From keeping the lights on to modernizing how you work — SeenLogic handles your technology so you don't have to.</p>
+    <div class="svc-grid">
+      <div class="scard">
+        <div class="scard-num">01</div>
+        <div class="scard-ico">🖥</div>
+        <h3 contenteditable="true">Managed IT Services</h3>
+        <p contenteditable="true">Proactive monitoring, maintenance, and support for your entire IT infrastructure. We prevent problems before they disrupt your team.</p>
+      </div>
+      <div class="scard">
+        <div class="scard-num">02</div>
+        <div class="scard-ico">🤖</div>
+        <h3 contenteditable="true">AI Integration for Business</h3>
+        <p contenteditable="true">We implement AI into your business vividly. From intelligent workflows to smart automation, we bring practical AI solutions that create real results. We automate repetitive tasks so your team can focus on what matters.</p>
+      </div>
+      <div class="scard">
+        <div class="scard-num">03</div>
+        <div class="scard-ico">☁️</div>
+        <h3 contenteditable="true">Cloud Services</h3>
+        <p contenteditable="true">We move your operations to the cloud and keep them running there. Microsoft 365, Azure, and beyond. Less overhead, more flexibility, fully managed.</p>
+      </div>
+      <div class="scard">
+        <div class="scard-num">04</div>
+        <div class="scard-ico">🔐</div>
+        <h3 contenteditable="true">Cybersecurity</h3>
+        <p contenteditable="true">Firewall management, endpoint protection, and ongoing threat monitoring to keep your data and systems secure.</p>
+      </div>
+      <div class="scard">
+        <div class="scard-num">05</div>
+        <div class="scard-ico">📊</div>
+        <h3 contenteditable="true">Advanced Data Analytics</h3>
+        <p contenteditable="true">We analyze everything measurable in your business — from operations to performance — and turn that data into clear, actionable insights that drive smarter decisions.</p>
+      </div>
+      <div class="scard">
+        <div class="scard-num">06</div>
+        <div class="scard-ico">🎧</div>
+        <h3 contenteditable="true">Help Desk Support</h3>
+        <p contenteditable="true">Unlimited, responsive support by phone or email. Real people, real answers — when you need them most.</p>
+      </div>
+      <div class="scard">
+        <div class="scard-num">07</div>
+        <div class="scard-ico">💾</div>
+        <h3 contenteditable="true">Backup & Recovery</h3>
+        <p contenteditable="true">Automated backups and tested disaster recovery procedures. Your data is always protected and recoverable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="sec sec-alt">
+    <div class="features-grid">
+      <div>
+        <div class="sec-label" contenteditable="true">Why SeenLogic</div>
+        <div class="sec-title" contenteditable="true">Proactive IT support.<br><em>Built for your growth.</em></div>
+        <p class="sec-sub" contenteditable="true">We don't just fix what's broken. We think ahead, plan carefully, and make sure your technology is always working for you — not against you.</p>
+        <ul class="flist">
+          <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Flat-rate monthly pricing — no surprise invoices</span></li>
+          <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Dedicated point of contact for every client</span></li>
+          <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Experienced across a wide range of tech fields</span></li>
+          <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">On-site support throughout DC, Maryland & Virginia</span></li>
+          <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Vendor-neutral — we recommend what's right for you</span></li>
+          <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Creative problem-solvers who take pride in our work</span></li>
+        </ul>
+        <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap;">
+          <button class="btn" onclick="openModal()">Get a Free Consultation</button>
+          <button class="btn-ghost" onclick="go('services',document.querySelectorAll('.nb')[1])">View Services</button>
+        </div>
+      </div>
+      <div class="dark-panel">
+        <div class="dp-top">
+          <h3 contenteditable="true">Rooted in the DMV.</h3>
+          <p contenteditable="true">We know Washington DC, Maryland, and Virginia — the businesses, the pace, the expectations. SeenLogic was built to serve this region and we're proud of it.</p>
+          <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="background:rgba(200,90,30,.15);border:1px solid rgba(200,90,30,.3);color:var(--orange3);padding:5px 13px;border-radius:4px;font-size:12px;font-weight:600;" contenteditable="true">Washington DC</span>
+            <span style="background:rgba(200,90,30,.15);border:1px solid rgba(200,90,30,.3);color:var(--orange3);padding:5px 13px;border-radius:4px;font-size:12px;font-weight:600;" contenteditable="true">Maryland</span>
+            <span style="background:rgba(200,90,30,.15);border:1px solid rgba(200,90,30,.3);color:var(--orange3);padding:5px 13px;border-radius:4px;font-size:12px;font-weight:600;" contenteditable="true">Virginia</span>
+          </div>
+        </div>
+        <div class="dp-body">
+          <div class="sec-label" style="color:var(--orange3);margin-bottom:16px;" contenteditable="true">Our Commitment</div>
+          <ul class="flist">
+            <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Transparency — you always know what you're paying for</span></li>
+            <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Speed — we respond fast and resolve even faster</span></li>
+            <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Partnership — your success genuinely drives ours</span></li>
+          </ul>
+          <div style="margin-top:24px;padding:18px;border-left:3px solid var(--orange);background:rgba(200,90,30,.06);border-radius:0 var(--r) var(--r) 0;">
+            <p style="font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;font-style:italic;" contenteditable="true">"SeenLogic doesn't just manage our IT — they understand our business. The difference is noticeable from day one."</p>
+            <p style="font-size:12px;color:var(--orange3);font-weight:600;margin-top:10px;" contenteditable="true">— A satisfied client, DMV area</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="sec">
+    <div class="sec-label" contenteditable="true">How It Works</div>
+    <div class="sec-title" contenteditable="true">Simple to start.<br><em>Built to last.</em></div>
+    <div class="proc-grid">
+      <div class="proc-step">
+        <div class="proc-num">01</div>
+        <h4 contenteditable="true">Free Consultation</h4>
+        <p contenteditable="true">We learn about your business, assess your current IT setup, and identify where we can help — at no cost.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">02</div>
+        <h4 contenteditable="true">Custom Proposal</h4>
+        <p contenteditable="true">You receive a clear, tailored proposal with straightforward pricing. No jargon, no hidden fees.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">03</div>
+        <h4 contenteditable="true">Onboarding</h4>
+        <p contenteditable="true">We set up monitoring, document your environment, and get everything running smoothly — quickly.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">04</div>
+        <h4 contenteditable="true">Ongoing Partnership</h4>
+        <p contenteditable="true">From that point on, we're your IT team — proactive, responsive, and always in your corner.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOFTWARE COMING SOON RIBBON -->
+  <div class="soft-ribbon">
+    <span class="soft-dot"></span>
+    <span><strong>Coming Soon:</strong> SeenLogic is developing proprietary business software solutions — purpose-built tools to help businesses operate smarter. <strong>Stay tuned.</strong></span>
+    <span class="soft-dot"></span>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="cta-copy">
+      <h2 contenteditable="true">Ready to get your IT sorted?</h2>
+      <p contenteditable="true">Free consultation, no commitment. Let's talk about what SeenLogic can do for you.</p>
+    </div>
+    <div class="cta-btns">
+      <button class="btn" onclick="openModal()">Contact Us Today</button>
+      <button class="btn-navy" style="border:1.5px solid rgba(255,255,255,.2);" onclick="go('services',document.querySelectorAll('.nb')[1])">See All Services</button>
+    </div>
+  </div>
+
+</div><!-- /home -->
+
+
+<!-- ════════════════ SERVICES ════════════════ -->
+<div class="page" id="page-services">
+  <div class="page-intro">
+    <div class="sec-label" contenteditable="true">Our Services</div>
+    <h1 contenteditable="true">IT that works.<br><em>Every day.</em></h1>
+    <p class="lead" contenteditable="true">SeenLogic offers managed IT services, cybersecurity, cloud solutions, and AI integration — everything a modern business needs to operate confidently.</p>
+  </div>
+  <div class="inner">
+
+    <div class="cblock">
+      <div class="sec-label" contenteditable="true">Core</div>
+      <div class="sec-title" style="font-size:28px;" contenteditable="true">Managed IT Services</div>
+      <p class="sec-sub" contenteditable="true">Your complete IT department — proactive, responsive, and built around your business.</p>
+      <div class="svc-grid" style="margin-top:32px;">
+        <div class="scard"><div class="scard-num">01</div><div class="scard-ico">📊</div><h3 contenteditable="true">Remote Monitoring & Management</h3><p contenteditable="true">24/7 monitoring of all systems with automated alerting and rapid remote resolution.</p></div>
+        <div class="scard"><div class="scard-num">02</div><div class="scard-ico">🔧</div><h3 contenteditable="true">Patch Management</h3><p contenteditable="true">OS and software updates deployed automatically to close security gaps without interrupting your day.</p></div>
+        <div class="scard"><div class="scard-num">03</div><div class="scard-ico">🎧</div><h3 contenteditable="true">Help Desk Support</h3><p contenteditable="true">Responsive support by phone and email. Real people who know your setup and resolve issues fast.</p></div>
+      </div>
+    </div>
+
+    <div class="sec-panel">
+      <div class="sec-label" contenteditable="true">Security</div>
+      <div class="sec-title" style="font-size:28px;" contenteditable="true">Cybersecurity Solutions</div>
+      <p class="sec-sub" contenteditable="true">Layered, proactive protection to keep your business, data, and clients safe.</p>
+      <ul class="flist" style="margin-top:28px;max-width:580px;">
+        <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Firewall configuration and ongoing management</span></li>
+        <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Endpoint detection & response across all devices</span></li>
+        <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Security awareness training and phishing simulations</span></li>
+        <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Dark web monitoring for leaked credentials</span></li>
+        <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Multi-factor authentication rollout and management</span></li>
+      </ul>
+    </div>
+
+    <div class="cblock">
+      <div class="sec-label" contenteditable="true">Cloud & AI</div>
+      <div class="sec-title" style="font-size:28px;" contenteditable="true">Modern Technology Solutions</div>
+      <p class="sec-sub" contenteditable="true">From cloud migration to AI integration — we bring the tools that move businesses forward.</p>
+      <div class="svc-grid" style="margin-top:32px;">
+        <div class="scard"><div class="scard-num">01</div><div class="scard-ico">☁️</div><h3 contenteditable="true">Microsoft 365 & Cloud</h3><p contenteditable="true">We move your operations to the cloud and keep them running. Microsoft 365, Azure, Teams, and beyond. Less overhead, fully managed.</p></div>
+        <div class="scard"><div class="scard-num">02</div><div class="scard-ico">💾</div><h3 contenteditable="true">Backup & Disaster Recovery</h3><p contenteditable="true">Automated backups with tested recovery plans. Your data restored in minutes, not days.</p></div>
+        <div class="scard"><div class="scard-num">03</div><div class="scard-ico">🤖</div><h3 contenteditable="true">AI Business Integration</h3><p contenteditable="true">We implement AI into your business vividly. Automation, intelligent workflows, and tools that create real, measurable results. We automate repetitive tasks so your team can focus on what matters.</p></div>
+        <div class="scard"><div class="scard-num">04</div><div class="scard-ico">📊</div><h3 contenteditable="true">Advanced Data Analytics</h3><p contenteditable="true">We analyze everything measurable in your business and turn that data into clear, actionable insights that drive smarter decisions and measurable growth.</p></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:20px 0 10px;">
+      <div class="sec-title" style="font-size:26px;" contenteditable="true">Not sure where to start?</div>
+      <p class="sec-sub" style="margin:12px auto 28px;text-align:center;" contenteditable="true">We offer a free consultation to assess your environment and recommend the right path forward.</p>
+      <button class="btn" onclick="openModal()">Book a Free Consultation</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════ ABOUT ════════════════ -->
+<div class="page" id="page-about">
+  <div class="page-intro">
+    <div class="sec-label" contenteditable="true">About SeenLogic</div>
+    <h1 contenteditable="true">Dedicated professionals.<br><em>Real results.</em></h1>
+    <p class="lead" contenteditable="true">A dedicated team of professionals with years of experience across various fields of technology. We are creative, driven, and take genuine pride in our work.</p>
+  </div>
+  <div class="inner">
+
+    <div class="features-grid cblock">
+      <div>
+        <div class="sec-label" contenteditable="true">Who We Are</div>
+        <div class="sec-title" style="font-size:28px;" contenteditable="true">Built for the DMV.<br><em>Built for you.</em></div>
+        <p style="font-size:15px;color:var(--mid);line-height:1.8;margin-top:18px;" contenteditable="true">SeenLogic is a managed IT services provider rooted in the Washington DC, Maryland, and Virginia area. We know this region, its businesses, its pace, and its standards. That local knowledge shapes how we work and how we serve our clients.</p>
+        <p style="font-size:15px;color:var(--mid);line-height:1.8;margin-top:14px;" contenteditable="true">We bring together experience from across the technology spectrum, from infrastructure and cybersecurity to cloud platforms and AI, and we apply that knowledge creatively and strategically to every client we work with.</p>
+        <p style="font-size:15px;color:var(--mid);line-height:1.8;margin-top:14px;" contenteditable="true">Our approach is simple: understand your business deeply, design the right technology strategy, and execute it with care. We take pride in doing excellent work and it shows.</p>
+        <div style="margin-top:32px;display:flex;gap:10px;flex-wrap:wrap;">
+          <span style="background:var(--orange-dim);border:1px solid rgba(200,90,30,.25);color:var(--orange);padding:6px 16px;border-radius:4px;font-size:12.5px;font-weight:700;letter-spacing:.5px;" contenteditable="true">Washington DC</span>
+          <span style="background:var(--orange-dim);border:1px solid rgba(200,90,30,.25);color:var(--orange);padding:6px 16px;border-radius:4px;font-size:12.5px;font-weight:700;letter-spacing:.5px;" contenteditable="true">Maryland</span>
+          <span style="background:var(--orange-dim);border:1px solid rgba(200,90,30,.25);color:var(--orange);padding:6px 16px;border-radius:4px;font-size:12.5px;font-weight:700;letter-spacing:.5px;" contenteditable="true">Virginia</span>
+        </div>
+      </div>
+
+      <div class="dark-panel">
+        <div class="dp-top">
+          <h3 contenteditable="true">Our Values</h3>
+          <p contenteditable="true">These aren't just words on a wall. They shape how we show up for our clients every single day.</p>
+        </div>
+        <div class="dp-body">
+          <ul class="flist">
+            <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Transparency: you always know what's happening and why</span></li>
+            <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Creativity: we solve problems thoughtfully, not generically</span></li>
+            <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Pride in our work: quality is never negotiable</span></li>
+            <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Accountability: we own what we deliver</span></li>
+            <li><span class="fck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span contenteditable="true">Partnership: your success is our success, genuinely</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:20px 0;">
+      <button class="btn" onclick="openModal()">Get in Touch</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════ CONTACT ════════════════ -->
+<div class="page" id="page-contact">
+  <div class="page-intro">
+    <div class="sec-label" contenteditable="true">Contact Us</div>
+    <h1 contenteditable="true">Let's start the<br><em>conversation.</em></h1>
+    <p class="lead" contenteditable="true">No pressure, no sales pitch. Just an honest conversation about how SeenLogic can help your business run better — in DC, Maryland, or Virginia.</p>
+  </div>
+  <div class="inner">
+    <div class="contact-wrap">
+      <div class="ci-head">
+        <h2 contenteditable="true">We'd love to hear from you.</h2>
+        <p contenteditable="true">Whether you need IT support now or you're exploring your options, reach out. We typically respond within a few hours.</p>
+        <div class="ci-row">
+          <div class="ci-ic">📞</div>
+          <div><div class="ci-lb">Phone</div><div class="ci-v">571-235-6104</div></div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-ic">📍</div>
+          <div><div class="ci-lb">Service Area</div><div class="ci-v" contenteditable="true">Washington DC · Maryland · Virginia</div></div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-ic">🕐</div>
+          <div><div class="ci-lb">Hours</div><div class="ci-v" contenteditable="true">Mon–Fri: 8:00am – 6:00pm<br>Emergency support available</div></div>
+        </div>
+      </div>
+
+      <div class="fcard">
+        <div class="fok" id="pg-ok">✅ Message sent — we'll be in touch soon.</div>
+        <div class="fg"><label>Your Name</label><input type="text" id="fc-name" placeholder="Jane Smith"/></div>
+        <div class="fg"><label>Company</label><input type="text" id="fc-co" placeholder="Your Company"/></div>
+        <div class="fg"><label>Email Address</label><input type="email" id="fc-email" placeholder="jane@company.com"/></div>
+        <div class="fg"><label>Phone</label><input type="tel" id="fc-ph" placeholder="(555) 000-0000"/></div>
+        <div class="fg"><label>How Can We Help?</label>
+          <select id="fc-svc">
+            <option>Select a service…</option>
+            <option>Managed IT Services</option>
+            <option>Cybersecurity</option>
+            <option>Cloud Services</option>
+            <option>AI Integration</option>
+            <option>Backup & Recovery</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="fg"><label>Message</label><textarea id="fc-msg" placeholder="Tell us about your situation…"></textarea></div>
+        <button class="btn" style="width:100%;justify-content:center;font-size:15px;padding:14px;" onclick="submitPg()">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- DYNAMIC PAGES -->
+<div id="dyn-pages"></div>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="fl-brand">
+    <div class="fl-name"><span>Seen</span>Logic</div>
+    <div class="fl-tag">Managed IT Services</div>
+    <div class="fl-note" contenteditable="true">© 2026 SeenLogic. All rights reserved.</div>
+  </div>
+  <div class="fl-mid">
+    <div class="fl-dmv" contenteditable="true">📍 Serving Washington DC · Maryland · Virginia</div>
+    <div class="fl-nav">
+      <a href="#" onclick="go('home');return false;">Home</a>
+      <a href="#" onclick="go('services');return false;">Services</a>
+      <a href="#" onclick="go('about');return false;">About</a>
+      <a href="#" onclick="go('contact');return false;">Contact</a>
+    </div>
+  </div>
+  <button class="btn" onclick="openModal()">Contact Us</button>
+</footer>
+
+<div class="hint">✏ <b>Click any text</b> to edit it</div>
+
+<!-- CONTACT MODAL -->
+<div class="mbg" id="mbg" onclick="outsideClose(event)">
+  <div class="mbox">
+    <button class="mcl" onclick="closeModal()">✕</button>
+    <h2>Let's Talk</h2>
+    <p class="msub">Fill in your details and we'll get back to you promptly.</p>
+    <div class="fok" id="m-ok">✅ Message received! We'll be in touch soon.</div>
+    <div class="fg"><label>Name</label><input type="text" id="m-name" placeholder="Your full name"/></div>
+    <div class="fg"><label>Email</label><input type="email" id="m-email" placeholder="you@company.com"/></div>
+    <div class="fg"><label>Phone</label><input type="tel" id="m-ph" placeholder="(555) 000-0000"/></div>
+    <div class="fg"><label>Message</label><textarea id="m-msg" placeholder="How can we help?" style="min-height:90px;"></textarea></div>
+    <button class="btn" style="width:100%;justify-content:center;font-size:15px;padding:14px;" onclick="submitModal()">Send Message →</button>
+  </div>
+</div>
+
+<script>
+const PAGES={home:'page-home',services:'page-services',about:'page-about',contact:'page-contact'};
+const CUSTOM={};
+
+function go(key,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  const id=PAGES[key]||CUSTOM[key];
+  if(id)document.getElementById(id).classList.add('active');
+  if(btn)btn.classList.add('active');
+  else document.querySelectorAll('.nb').forEach(b=>{if(b.textContent.toLowerCase().trim()===key)b.classList.add('active');});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function addPage(){
+  const inp=document.getElementById('pg-input');
+  const name=inp.value.trim(); if(!name)return;
+  const key=name.toLowerCase().replace(/\s+/g,'-');
+  if(PAGES[key]||CUSTOM[key]){alert('Page already exists.');return;}
+  const pid='pg-'+key; CUSTOM[key]=pid;
+  const div=document.createElement('div');
+  div.className='page'; div.id=pid;
+  div.innerHTML=`
+    <div class="page-intro">
+      <div class="sec-label" contenteditable="true">New Page</div>
+      <h1 contenteditable="true">${name}</h1>
+      <p class="lead" contenteditable="true">Click any text to start editing this page.</p>
+    </div>
+    <div class="inner">
+      <div class="sec-label" contenteditable="true">Overview</div>
+      <div class="sec-title" contenteditable="true">Your content <em>goes here.</em></div>
+      <p class="sec-sub" contenteditable="true">Edit this text to describe what this page is about.</p>
+      <div class="svc-grid" style="margin-top:36px;">
+        <div class="scard"><div class="scard-ico">⚙️</div><h3 contenteditable="true">Section One</h3><p contenteditable="true">Click to edit.</p></div>
+        <div class="scard"><div class="scard-ico">📋</div><h3 contenteditable="true">Section Two</h3><p contenteditable="true">Click to edit.</p></div>
+        <div class="scard"><div class="scard-ico">💡</div><h3 contenteditable="true">Section Three</h3><p contenteditable="true">Click to edit.</p></div>
+      </div>
+      <div style="margin-top:52px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+        <button class="btn" onclick="openModal()">Contact Us</button>
+        <button class="pill rm" onclick="removePage('${key}','${pid}',this.closest('.page'))">Remove Page</button>
+      </div>
+    </div>`;
+  document.getElementById('dyn-pages').appendChild(div);
+  const btn=document.createElement('button');
+  btn.className='nb'; btn.textContent=name; btn.setAttribute('data-key',key);
+  btn.onclick=function(){go(key,this);};
+  document.getElementById('main-nav').appendChild(btn);
+  go(key,btn); inp.value='';
+}
+
+function removePage(key,pid,el){
+  if(!confirm('Remove this page?'))return;
+  delete CUSTOM[key]; el.remove();
+  const b=document.querySelector(`[data-key="${key}"]`); if(b)b.remove();
+  go('home');
+}
+
+function openModal(){
+  document.getElementById('mbg').classList.add('open');
+  document.getElementById('m-ok').style.display='none';
+}
+function closeModal(){document.getElementById('mbg').classList.remove('open');}
+function outsideClose(e){if(e.target.id==='mbg')closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+function submitModal(){
+  const n=document.getElementById('m-name').value.trim();
+  const e=document.getElementById('m-email').value.trim();
+  if(!n||!e){alert('Please enter your name and email.');return;}
+  document.getElementById('m-ok').style.display='block';
+  ['m-name','m-email','m-ph','m-msg'].forEach(id=>document.getElementById(id).value='');
+  setTimeout(closeModal,3500);
+}
+
+function submitPg(){
+  const n=document.getElementById('fc-name').value.trim();
+  const e=document.getElementById('fc-email').value.trim();
+  if(!n||!e){alert('Please enter your name and email.');return;}
+  const ok=document.getElementById('pg-ok');
+  ok.style.display='block';
+  ['fc-name','fc-co','fc-email','fc-ph','fc-msg'].forEach(id=>document.getElementById(id).value='');
+  ok.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+</script>
+</body>
+</html>
